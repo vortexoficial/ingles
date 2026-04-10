@@ -213,6 +213,20 @@ const quizSteps = [
     },
     {
         tag: 'Etapa 11',
+        title: 'Indique e ganhe o e-book',
+        description: 'Se quiser, indique um amigo e receba nosso e-book Speaking Study Plan.',
+        fields: [
+            {
+                id: 'friend_referral',
+                label: 'Quer indicar alguém?',
+                type: 'textarea',
+                required: false,
+                placeholder: 'Se quiser, deixe aqui o nome e o contato da pessoa indicada.',
+            },
+        ],
+    },
+    {
+        tag: 'Etapa 12',
         title: 'Observação final',
         description: 'Se existir alguma dúvida ou contexto extra, este é o melhor lugar para registrar.',
         fields: [
