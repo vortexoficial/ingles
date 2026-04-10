@@ -2465,6 +2465,7 @@ em.grad {
 }
 .schedule-dropdown:focus-within,
 .schedule-dropdown.is-open {
+    z-index: 20;
     border-color: rgba(103,150,194,0.24);
     box-shadow: 0 0 0 4px rgba(103,150,194,0.1), 0 14px 28px rgba(12,16,20,0.08);
     transform: translateY(-1px);
@@ -2508,7 +2509,7 @@ em.grad {
 }
 .schedule-menu {
     position: absolute;
-    bottom: calc(100% + 0.45rem);
+    top: calc(100% + 0.45rem);
     left: 0;
     right: 0;
     z-index: 15;
@@ -2521,7 +2522,7 @@ em.grad {
     background: rgba(255,255,255,0.98);
     box-shadow: 0 20px 44px rgba(12,16,20,0.12);
     backdrop-filter: blur(14px);
-    transform-origin: bottom center;
+    transform-origin: top center;
 }
 .schedule-dropdown.is-open .schedule-menu {
     display: grid;
