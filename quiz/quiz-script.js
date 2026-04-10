@@ -1,6 +1,3 @@
-const quizStorageKey = 'speakup-quiz-draft';
-const submissionStorageKey = 'speakup-quiz-submitted';
-
 const scheduleOptions = [
     'Segunda, 08h às 09h',
     'Quarta, 08h às 09h',
@@ -236,7 +233,6 @@ const stepTitle = document.getElementById('step-title');
 const stepDescription = document.getElementById('step-description');
 const stepFields = document.getElementById('step-fields');
 const feedback = document.getElementById('form-feedback');
-const draftMessage = document.getElementById('draft-message');
 const progressText = document.getElementById('progress-text');
 const progressFill = document.getElementById('progress-fill');
 const nextButton = document.getElementById('next-button');
@@ -248,21 +244,8 @@ const successComplete = document.getElementById('success-complete');
 const successHomeLink = document.getElementById('success-home-link');
 
 let currentStepIndex = 0;
-let formData = loadDraft();
+let formData = {};
 let submissionTimer = null;
-
-function loadDraft() {
-    try {
-        const draft = window.localStorage.getItem(quizStorageKey);
-        return draft ? JSON.parse(draft) : {};
-    } catch {
-        return {};
-    }
-}
-
-function saveDraft() {
-    window.localStorage.setItem(quizStorageKey, JSON.stringify(formData));
-}
 
 function getVisibleFields(step) {
     return step.fields.filter((field) => {
@@ -454,7 +437,6 @@ function buildScheduleInput(field) {
         onSelect: (value) => {
             formData[`${field.id}_day`] = value;
             formData[field.id] = '';
-            saveDraft();
             renderStep();
         },
     });
@@ -467,7 +449,6 @@ function buildScheduleInput(field) {
         disabled: !selectedDay,
         onSelect: (value) => {
             formData[field.id] = value;
-            saveDraft();
             renderStep();
         },
     });
@@ -506,11 +487,9 @@ function buildInput(field) {
             input.checked = formData[field.id] === option;
             input.addEventListener('change', () => {
                 formData[field.id] = option;
-                saveDraft();
 
                 if (field.id === 'studied_english' && option === 'Não, sou iniciante.') {
                     delete formData.study_time;
-                    saveDraft();
                 }
 
                 renderStep();
@@ -554,7 +533,6 @@ function buildInput(field) {
         } else {
             formData[field.id] = event.target.value;
         }
-        saveDraft();
     });
 
     wrapper.appendChild(input);
@@ -646,11 +624,6 @@ function handleSubmit(event) {
         return;
     }
 
-    window.localStorage.setItem(submissionStorageKey, JSON.stringify({
-        submittedAt: new Date().toISOString(),
-        payload: formData,
-    }));
-    window.localStorage.removeItem(quizStorageKey);
     document.body.classList.add('quiz-submitted');
     successLoading?.classList.remove('hidden');
     successComplete?.classList.add('hidden');
@@ -669,24 +642,12 @@ function handleSubmit(event) {
     }, 1400);
 }
 
-function restoreDraftMessage() {
-    if (Object.keys(formData).length === 0) {
-        draftMessage.classList.add('hidden');
-        return;
-    }
-
-    draftMessage.textContent = 'Encontramos um rascunho salvo neste dispositivo. Você pode continuar de onde parou.';
-    draftMessage.classList.remove('hidden');
-}
-
 function restartQuiz() {
     if (submissionTimer) {
         window.clearTimeout(submissionTimer);
         submissionTimer = null;
     }
 
-    window.localStorage.removeItem(quizStorageKey);
-    window.localStorage.removeItem(submissionStorageKey);
     formData = {};
     currentStepIndex = 0;
     document.body.classList.remove('quiz-submitted');
@@ -694,7 +655,6 @@ function restartQuiz() {
     successState.setAttribute('aria-hidden', 'true');
     successLoading?.classList.remove('hidden');
     successComplete?.classList.add('hidden');
-    restoreDraftMessage();
     renderStep();
 }
 
@@ -733,5 +693,4 @@ if ('IntersectionObserver' in window) {
     document.querySelectorAll('[data-reveal]').forEach((element) => element.classList.add('is-visible'));
 }
 
-restoreDraftMessage();
 renderStep();

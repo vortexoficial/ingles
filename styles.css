@@ -379,9 +379,6 @@ body {
     gap: 0.8rem;
     animation: revealUp var(--dur-mid) var(--ease-out);
 }
-body.menu-open {
-    overflow: hidden;
-}
 
 /* ─── BOTÕES ───────────────────────────────────────────────────── */
 .button {
@@ -2395,17 +2392,11 @@ em.grad {
 }
 
 /* Mensagens */
-.draft-message,
 .form-feedback {
     margin-bottom: 1.2rem;
     padding: 0.9rem 1.1rem;
     border-radius: var(--r-sm);
     font-size: 0.93rem;
-}
-.draft-message {
-    background: rgba(103,150,194,0.1);
-    border: 1px solid rgba(103,150,194,0.18);
-    color: var(--c-navy);
 }
 .form-feedback {
     background: rgba(249,115,132,0.1);
@@ -2840,7 +2831,6 @@ textarea.form-control { min-height: 5rem; resize: vertical; }
         flex-direction: column;
         overflow: hidden;
     }
-    .draft-message,
     .form-feedback {
         margin-bottom: 0.75rem;
         padding: 0.72rem 0.82rem;
@@ -2918,9 +2908,6 @@ textarea.form-control { min-height: 5rem; resize: vertical; }
 }
 
 @media (max-width: 699px) and (max-height: 760px) {
-    .draft-message {
-        display: none !important;
-    }
     .step-header {
         margin-bottom: 0.55rem;
     }

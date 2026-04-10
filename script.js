@@ -21,7 +21,6 @@ const setMobileMenuState = (isOpen) => {
 
     header.classList.toggle('menu-open', isOpen);
     mobileMenuToggle.setAttribute('aria-expanded', String(isOpen));
-    document.body.classList.toggle('menu-open', isOpen);
 };
 
 const handleHeaderState = () => {
