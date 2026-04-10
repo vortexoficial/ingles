@@ -2,100 +2,176 @@ const quizStorageKey = 'speakup-quiz-draft';
 const submissionStorageKey = 'speakup-quiz-submitted';
 
 const scheduleOptions = [
-    'Segunda, das 08h as 09h',
-    'Quarta, das 08h as 09h',
-    'Segunda, as 10h',
-    'Quarta, as 10h',
-    'Segunda, das 13h as 14h',
-    'Quarta, das 13h as 14h',
-    'Terça, das 13 as 14h',
-    'Quinta, das 13h as 14h',
-    'Segunda, as 21h',
-    'Quarta, as 21h',
-    'Terça, as 17:30h',
-    'Quinta, as 17:30h',
-    'Terça, as 19:30h',
-    'Quinta, as 19:30h',
-    'Terça, as 20:30h',
-    'Quinta, as 20:30h',
+    'Segunda, 08h às 09h',
+    'Quarta, 08h às 09h',
+    'Segunda, 10h',
+    'Quarta, 10h',
+    'Segunda, 13h às 14h',
+    'Quarta, 13h às 14h',
+    'Terça, 13h às 14h',
+    'Quinta, 13h às 14h',
+    'Segunda, 21h',
+    'Quarta, 21h',
+    'Terça, 17h30',
+    'Quinta, 17h30',
+    'Terça, 19h30',
+    'Quinta, 19h30',
+    'Terça, 20h30',
+    'Quinta, 20h30',
 ];
 
 const quizSteps = [
     {
         tag: 'Etapa 1',
-        title: 'Seus dados para contato',
-        description: 'Começamos com o básico para podermos continuar sua jornada com contexto e retorno adequado.',
+        title: 'Seu contato',
+        description: 'Deixe seus dados para continuarmos o diagnóstico e retornar com a melhor proposta.',
         fields: [
             {
                 id: 'name',
                 label: 'Nome',
                 type: 'text',
                 required: true,
-                placeholder: 'Seu nome',
+                placeholder: 'Como você gostaria de ser chamado(a)?',
             },
             {
                 id: 'name_contact',
                 label: 'WhatsApp',
                 type: 'tel',
                 required: true,
-                placeholder: 'Seu WhatsApp (com DDD)',
+                placeholder: 'WhatsApp com DDD',
+            },
+            {
+                id: 'email',
+                label: 'E-mail',
+                type: 'email',
+                required: false,
+                placeholder: 'Seu melhor e-mail (opcional)',
             },
         ],
     },
     {
         tag: 'Etapa 2',
-        title: 'Seu histórico com o inglês',
-        description: 'Aqui entendemos o seu ponto de partida para indicar um caminho mais alinhado.',
+        title: 'Seu ponto de partida',
+        description: 'Quero entender com honestidade de onde você está começando hoje.',
         fields: [
             {
                 id: 'studied_english',
-                label: 'Você já estudou inglês?',
+                label: 'Qual destas opções mais descreve sua relação com o inglês?',
                 type: 'single_choice',
                 required: true,
                 options: [
-                    'Não, sou iniciante.',
-                    'Sim, mas apenas na escola.',
-                    'Sim, mas não lembro de nada ou quase nada.',
-                    'Sim, entendo mas tenho dificuldade em me comunicar.',
-                    'Outro',
-                ],
-            },
-            {
-                id: 'study_time',
-                label: 'Em caso positivo, por quanto tempo estudou?',
-                type: 'single_choice',
-                required: false,
-                showIf: {
-                    field: 'studied_english',
-                    operator: 'not_equals',
-                    value: 'Não, sou iniciante.',
-                },
-                options: [
-                    'Menos de um ano.',
-                    'De dois a três anos.',
-                    'Mais de três anos.',
+                    'Nunca estudei inglês de verdade.',
+                    'Só tive contato na escola.',
+                    'Já fiz curso, mas parei no meio do caminho.',
+                    'Entendo um pouco, mas travo para falar.',
+                    'Já me comunico, mas quero ganhar fluidez e segurança.',
                 ],
             },
         ],
     },
     {
         tag: 'Etapa 3',
-        title: 'Formato e disponibilidade',
-        description: 'Precisamos entender como o inglês pode se encaixar na sua rotina de forma viável.',
+        title: 'Seu momento com o inglês',
+        description: 'Isso ajuda a diferenciar recomeço, manutenção e aceleração.',
         fields: [
             {
-                id: 'class_preference',
-                label: 'Você tem preferências por aulas...',
+                id: 'last_contact',
+                label: 'Quando foi a sua última fase de contato consistente com o inglês?',
                 type: 'single_choice',
                 required: true,
                 options: [
-                    'Individuais, uma vez na semana.',
-                    'Individuais, duas vezes na semana.',
-                    'Em pequenos grupos, uma vez na semana.',
-                    'Em pequenos grupos, duas vezes na semana.',
-                    'Outro',
+                    'Estou começando agora.',
+                    'Tive contato nos últimos 6 meses.',
+                    'Faz entre 6 meses e 2 anos.',
+                    'Faz mais de 2 anos.',
                 ],
             },
+        ],
+    },
+    {
+        tag: 'Etapa 4',
+        title: 'Seu principal bloqueio',
+        description: 'Aqui a resposta precisa ser prática: o que mais atrapalha seu avanço hoje?',
+        fields: [
+            {
+                id: 'current_block',
+                label: 'O que mais trava você hoje no inglês?',
+                type: 'single_choice',
+                required: true,
+                options: [
+                    'Entender quando alguém fala comigo.',
+                    'Montar frases sem traduzir tudo na cabeça.',
+                    'Falar com confiança e sem medo de errar.',
+                    'Ter vocabulário para situações reais.',
+                    'Manter constância e encaixar o estudo na rotina.',
+                ],
+            },
+        ],
+    },
+    {
+        tag: 'Etapa 5',
+        title: 'Seu objetivo principal',
+        description: 'Quero entender em que cenário o inglês precisa destravar sua vida.',
+        fields: [
+            {
+                id: 'goal_focus',
+                label: 'Para que você quer o inglês agora?',
+                type: 'single_choice',
+                required: true,
+                options: [
+                    'Trabalho, atendimento, entrevistas ou reuniões.',
+                    'Viagens e situações práticas do dia a dia.',
+                    'Faculdade, prova, intercâmbio ou certificação.',
+                    'Conversação e desenvolvimento pessoal.',
+                    'Ainda estou definindo meu foco, mas quero sair do zero.',
+                ],
+            },
+        ],
+    },
+    {
+        tag: 'Etapa 6',
+        title: 'Seu prazo de resultado',
+        description: 'A urgência muda bastante o tipo de plano mais indicado para você.',
+        fields: [
+            {
+                id: 'urgency',
+                label: 'Quando você gostaria de sentir esse avanço na prática?',
+                type: 'single_choice',
+                required: true,
+                options: [
+                    'Quero começar imediatamente.',
+                    'Nas próximas semanas.',
+                    'Dentro dos próximos 3 meses.',
+                    'Ainda estou pesquisando, sem urgência.',
+                ],
+            },
+        ],
+    },
+    {
+        tag: 'Etapa 7',
+        title: 'Formato ideal',
+        description: 'Agora precisamos entender qual ritmo e formato fazem sentido para sua rotina.',
+        fields: [
+            {
+                id: 'class_preference',
+                label: 'Como você prefere estudar?',
+                type: 'single_choice',
+                required: true,
+                options: [
+                    'Aula individual, 1 vez por semana.',
+                    'Aula individual, 2 vezes por semana.',
+                    'Pequeno grupo, 1 vez por semana.',
+                    'Pequeno grupo, 2 vezes por semana.',
+                    'Preciso de algo mais flexível.',
+                ],
+            },
+        ],
+    },
+    {
+        tag: 'Etapa 8',
+        title: 'Sua disponibilidade',
+        description: 'Selecione a faixa de horário que hoje é mais realista para você manter.',
+        fields: [
             {
                 id: 'best_time',
                 label: 'Qual melhor horário para você?',
@@ -106,58 +182,49 @@ const quizSteps = [
         ],
     },
     {
-        tag: 'Etapa 4',
-        title: 'Seu objetivo e sua maior dificuldade',
-        description: 'Essas respostas ajudam a personalizar a comunicação e a direção da sua jornada.',
+        tag: 'Etapa 9',
+        title: 'Seu espaço na rotina',
+        description: 'Esse ponto ajuda a indicar uma trilha que você consegue sustentar.',
         fields: [
             {
-                id: 'learning_goal',
-                label: 'Qual seu objetivo no aprendizado? (Pessoal, Profissional, Acadêmico, Viagens ou outros)',
-                type: 'textarea',
-                required: false,
-                placeholder: 'Seu objetivo',
-            },
-            {
-                id: 'biggest_difficulty',
-                label: 'Qual sua maior dificuldade no aprendizado da Língua Inglesa?',
-                type: 'textarea',
-                required: false,
-                placeholder: 'Sua maior dificuldade',
+                id: 'study_commitment',
+                label: 'Quanto tempo você consegue investir fora da aula?',
+                type: 'single_choice',
+                required: true,
+                options: [
+                    'Consigo separar de 10 a 15 minutos por dia.',
+                    'Consigo praticar algumas vezes na semana.',
+                    'No momento, só consigo focar na aula.',
+                    'Minha rotina varia bastante; preciso de leveza.',
+                ],
             },
         ],
     },
     {
-        tag: 'Etapa 5',
-        title: 'Indique e ganhe',
-        description: 'Indique um amigo e receba nosso e-book "Speaking Study Plan".',
+        tag: 'Etapa 10',
+        title: 'Sua meta de curto prazo',
+        description: 'Quero entender o que seria um avanço concreto para você nos próximos meses.',
         fields: [
             {
-                id: 'referral_name',
-                label: 'Nome do indicado',
-                type: 'text',
-                required: false,
-                placeholder: 'Nome do indicado',
-            },
-            {
-                id: 'referral_whatsapp',
-                label: 'WhatsApp do indicado',
-                type: 'tel',
-                required: false,
-                placeholder: 'WhatsApp do indicado',
+                id: 'result_90_days',
+                label: 'Se o inglês avançasse bem, o que você gostaria de conseguir fazer nos próximos 90 dias?',
+                type: 'textarea',
+                required: true,
+                placeholder: 'Ex: participar de uma conversa simples, atender melhor no trabalho ou viajar com mais confiança.',
             },
         ],
     },
     {
-        tag: 'Etapa 6',
-        title: 'Insira sua dúvida',
-        description: 'Se quiser, deixe sua dúvida aqui antes de enviar.',
+        tag: 'Etapa 11',
+        title: 'Observação final',
+        description: 'Se existir alguma dúvida ou contexto extra, este é o melhor lugar para registrar.',
         fields: [
             {
                 id: 'doubts',
-                label: 'Insira sua dúvida',
+                label: 'Existe alguma dúvida, receio ou detalhe importante que você queira deixar registrado?',
                 type: 'textarea',
                 required: false,
-                placeholder: 'Escreva sua dúvida aqui',
+                placeholder: 'Se quiser, deixe aqui uma observação final.',
             },
         ],
     },
@@ -381,7 +448,7 @@ function buildScheduleInput(field) {
 
     const dayDropdown = createScheduleDropdown({
         caption: 'Dia',
-        placeholder: 'Selecione o dia',
+        placeholder: 'Escolha o dia',
         items: dayItems,
         selectedValue: selectedDay,
         onSelect: (value) => {
@@ -394,7 +461,7 @@ function buildScheduleInput(field) {
 
     const timeDropdown = createScheduleDropdown({
         caption: 'Horario',
-        placeholder: selectedDay ? 'Escolha o horario' : 'Selecione o dia',
+        placeholder: selectedDay ? 'Defina a hora' : 'Primeiro o dia',
         items: timeItems,
         selectedValue,
         disabled: !selectedDay,
@@ -533,6 +600,14 @@ function validateStep() {
             const digits = String(value).replace(/\D/g, '');
             if (digits.length < 10 || digits.length > 11) {
                 setFeedback('Informe o WhatsApp com DDD (ex: 13 99999-9999).');
+                return false;
+            }
+        }
+
+        if (field.type === 'email' && String(value).trim() !== '') {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(String(value).trim())) {
+                setFeedback('Informe um e-mail valido ou deixe esse campo em branco.');
                 return false;
             }
         }

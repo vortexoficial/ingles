@@ -23,7 +23,7 @@ Landing page estática e responsiva da Speak Up com quiz de diagnóstico em múl
 9. Banner de CTA para o quiz.
 10. FAQ em accordion.
 11. Fechamento com CTA final.
-12. Página separada de quiz com cinco etapas, barra de progresso e estado de sucesso.
+12. Página separada de quiz com onze etapas enxutas, foco diagnóstico mais forte e estado de sucesso.
 
 ## Componentização sugerida
 
@@ -46,11 +46,11 @@ Landing page estática e responsiva da Speak Up com quiz de diagnóstico em múl
 
 ## Especificação do quiz
 
-- Formato multi-step com cinco etapas.
+- Formato multi-step com onze etapas curtas para funcionar melhor no mobile.
 - Indicador de progresso visual e textual.
 - Salvamento parcial via localStorage.
-- Campo condicional de tempo de estudo quando a pessoa não é iniciante absoluta.
-- Validação básica de campos obrigatórios e e-mail.
+- Perguntas voltadas a objetivo, bloqueio principal, urgência e rotina de estudo.
+- Validação básica de campos obrigatórios, WhatsApp e e-mail opcional.
 - Estado final de sucesso com opção de reiniciar.
 
 ## Observação de tipografia
