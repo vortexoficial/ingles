@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico Speak Up | Descubra o melhor caminho para o seu inglês</title>
+    <meta name="description" content="Responda ao diagnóstico Speak Up e descubra o formato ideal para ganhar confiança, conversar em inglês e avançar com clareza.">
+    <meta name="theme-color" content="#F97384">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Diagnóstico Speak Up | Descubra o melhor caminho para o seu inglês">
+    <meta property="og:description" content="Responda em poucos minutos e descubra o formato ideal para destravar seu inglês com confiança, leveza e direção.">
+    <meta property="og:image" content="../thumb.png">
+    <meta property="og:image:alt" content="Thumb de compartilhamento do diagnóstico Speak Up">
+    <meta property="og:site_name" content="Speak Up">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Diagnóstico Speak Up | Descubra o melhor caminho para o seu inglês">
+    <meta name="twitter:description" content="Responda em poucos minutos e descubra o formato ideal para destravar seu inglês com confiança, leveza e direção.">
+    <meta name="twitter:image" content="../thumb.png">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="quiz-body">
+    <div class="site-shell">
+        <main class="quiz-main">
+            <section class="section quiz-section">
+                <div class="container quiz-layout">
+                    <section class="quiz-card" data-reveal>
+                        <div class="draft-message hidden" id="draft-message" role="status"></div>
+
+                        <form id="quiz-form" novalidate>
+                            <div class="step-header">
+                                <span class="step-tag" id="step-tag">Etapa 1</span>
+                                <h2 id="step-title">Seus dados para contato</h2>
+                                <p id="step-description">Começamos com o básico para podermos continuar sua jornada com contexto e retorno adequado.</p>
+                            </div>
+
+                            <div id="step-fields" class="step-fields"></div>
+
+                            <div class="form-feedback hidden" id="form-feedback" role="alert"></div>
+
+                            <div class="quiz-actions">
+                                <button class="button button-secondary" type="button" id="prev-button">Voltar</button>
+                                <button class="button button-primary" type="button" id="next-button">Continuar</button>
+                                <button class="button button-primary hidden" type="submit" id="submit-button">Enviar</button>
+                            </div>
+                        </form>
+
+                    </section>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <section class="success-state hidden" id="success-state" aria-hidden="true">
+        <div class="success-backdrop"></div>
+        <div class="success-panel" role="dialog" aria-modal="true" aria-labelledby="success-title">
+            <div class="success-orb success-orb--one"></div>
+            <div class="success-orb success-orb--two"></div>
+            <div class="success-loading" id="success-loading">
+                <div class="success-loader" aria-hidden="true">
+                    <span class="success-loader-ring"></span>
+                    <span class="success-loader-dot"></span>
+                </div>
+                <span class="section-tag">Enviando</span>
+                <h2 id="success-title">Estamos enviando seu formulário...</h2>
+                <p>Segure só um instante enquanto registramos suas respostas.</p>
+            </div>
+
+            <div class="success-complete hidden" id="success-complete">
+                <div class="success-icon" role="img" aria-label="Sucesso">
+                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="16" cy="16" r="13" stroke="#6796C2" stroke-width="2"/>
+                        <path d="M10 16l4 4 8-8" stroke="#6796C2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="section-tag">Obrigado</span>
+                <h2>Recebemos sua mensagem.</h2>
+                <p>Agradecemos pelo seu interesse. Em breve entraremos em contato com o direcionamento mais adequado para você.</p>
+                <div class="success-actions">
+                    <a class="button button-primary" href="../index.html" id="success-home-link">Voltar para o site</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="quiz-script.js"></script>
+</body>
+</html>
