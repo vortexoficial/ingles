@@ -217,11 +217,18 @@ const quizSteps = [
         description: 'Se quiser, indique um amigo e receba nosso e-book Speaking Study Plan.',
         fields: [
             {
-                id: 'friend_referral',
-                label: 'Quer indicar alguém?',
-                type: 'textarea',
+                id: 'friend_referral_name',
+                label: 'Nome do amigo indicado',
+                type: 'text',
                 required: false,
-                placeholder: 'Se quiser, deixe aqui o nome e o contato da pessoa indicada.',
+                placeholder: 'Nome da pessoa indicada',
+            },
+            {
+                id: 'friend_referral_whatsapp',
+                label: 'WhatsApp do amigo indicado',
+                type: 'tel',
+                required: false,
+                placeholder: 'WhatsApp com DDD',
             },
         ],
     },
